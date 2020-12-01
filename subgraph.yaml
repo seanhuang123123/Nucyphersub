@@ -1,0 +1,26 @@
+specVersion: 0.0.2
+description: NuCypher subgraph
+repository: https://github.com/seanhuang123123/nuCypher-subgraph
+schema:
+  file: ./schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: Dispatcher
+    network: mainnet
+    source:
+      address: '0xbbD3C0C794F40c4f993B03F65343aCC6fcfCb2e2'
+      abi: Dispatcher
+      startBlock: 11363473
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.4
+      language: wasm/assemblyscript
+      entities:
+        - Dispatcher
+      abis:
+        - name: Dispatcher
+          file: ./abis/Dispatcher.json
+      eventHandlers:
+        - event: Upgraded(indexed address,indexed address,address)
+          handler: handleNewUpgraded
+      file: ./src/mapping.ts

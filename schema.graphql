@@ -1,0 +1,5 @@
+type Dispatcher @entity {
+  id: ID!
+  to: Bytes!
+  owner: Bytes!
+}
